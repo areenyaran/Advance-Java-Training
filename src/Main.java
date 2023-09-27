@@ -3,7 +3,6 @@ import uni.*;
 public class Main {
     public static void main(String[] args) {
         EnrollmentManager university = new EnrollmentManager("Najah");
-        ReportManager reportManager = new ReportManager();
         StudentReport studentReportGenerator = new StudentReport();
         CourseReport courseReportGenerator = new CourseReport();
 

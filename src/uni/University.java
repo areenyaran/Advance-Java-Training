@@ -34,7 +34,7 @@ public abstract class University {
     public abstract void dropStudentFromCourse(Student student, Course course);
     public void generateAllReports() {
         ReportManager reportManager = new ReportManager();
-        reportManager.generateAllReports(this,this.students,this.courses);
+        reportManager.generateAllReports(this);
     }
 
 }

@@ -8,12 +8,12 @@ public class EnrollmentManager extends University {
 
     public void enrollInCourse(Student student, Course course) {
             student.getEnrolledCourses().add(course);
-            course.addStudent(student);
+            //course.addStudent(student);
     }
 
     public void dropCourse(Student student, Course course) {
             student.getEnrolledCourses().remove(course);
-            course.removeStudent(student);
+            //course.removeStudent(student);
     }
 
     @Override

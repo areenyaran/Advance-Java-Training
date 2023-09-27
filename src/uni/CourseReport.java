@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CourseReport implements ReportGenerator<Course> {
     public void generateReport(Course course) {
-        System.out.println("Students enrolled in course " + course.getTitle() + ":");
+        System.out.println("Course " + course.getTitle() + " report: \n- Students enrolled in course " + course.getTitle() + ":");
         List<Student> enrolledStudents = course.getEnrolledStudents();
         if (enrolledStudents.isEmpty()) {
             System.out.println("No students enrolled in this course.");

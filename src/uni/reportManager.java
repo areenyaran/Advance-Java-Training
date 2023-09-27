@@ -3,17 +3,17 @@ package uni;
 import java.util.List;
 
 public class ReportManager {
-    public void generateAllReports(University university, List<Student> students, List<Course> courses) {
+    public void generateAllReports(University university) {
         System.out.println("All Reports :");
 
         CourseReport courseReportGenerator = new CourseReport();
         StudentReport studentReportGenerator = new StudentReport();
         courseReportGenerator.generateAllCoursesReport(university);
 
-        for (Student student : students) {
+        for (Student student : university.getStudents()) {
             studentReportGenerator.generateReport(student);
         }
-        for (Course course : courses) {
+        for (Course course : university.getCourses()) {
             courseReportGenerator.generateReport(course);
         }
     }
