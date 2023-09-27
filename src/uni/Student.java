@@ -1,4 +1,5 @@
 package uni;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,25 +30,5 @@ public class Student {
 
     public List<Course> getEnrolledCourses() {
         return enrolledCourses;
-    }
-
-    public void enrollInCourse(Course course) {
-        if (enrolledCourses.contains(course)) {
-            System.out.println("Student is already enrolled in the course.");
-        } else if (course.getCurrentEnrollment() >= course.getMaxCapacity()) {
-            System.out.println("Course is full.");
-        } else {
-            enrolledCourses.add(course);
-            course.addStudent(this);
-        }
-    }
-
-    public void dropCourse(Course course) {
-        if (!enrolledCourses.contains(course)) {
-            System.out.println("Student is not enrolled in the course.");
-        } else {
-            enrolledCourses.remove(course);
-            course.removeStudent(this);
-        }
     }
 }

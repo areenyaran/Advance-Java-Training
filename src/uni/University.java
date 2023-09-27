@@ -3,11 +3,13 @@ package uni;
 import java.util.ArrayList;
 import java.util.List;
 
-public class University {
+public abstract class University {
+    private final String uniName;
     private final List<Student> students;
     private final List<Course> courses;
 
-    public University() {
+    public University(String uniName) {
+        this.uniName = uniName;
         this.students = new ArrayList<>();
         this.courses = new ArrayList<>();
     }
@@ -26,6 +28,13 @@ public class University {
 
     public void addCourse(Course course) {
         courses.add(course);
+    }
+
+    public abstract void enrollStudentInCourse(Student student, Course course);
+    public abstract void dropStudentFromCourse(Student student, Course course);
+    public void generateAllReports() {
+        ReportManager reportManager = new ReportManager();
+        reportManager.generateAllReports(this,this.students,this.courses);
     }
 
 }
