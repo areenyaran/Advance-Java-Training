@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    private final int studentId;
-    private final String name;
-    private final String email;
+    private int studentId;
+    private String name;
+    private String email;
     private final List<Course> enrolledCourses;
 
     public Student(int studentId, String name, String email) {
@@ -20,12 +20,24 @@ public class Student {
         return studentId;
     }
 
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Course> getEnrolledCourses() {

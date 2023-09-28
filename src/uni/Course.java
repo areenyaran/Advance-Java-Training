@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private final String courseCode;
-    private final String title;
-    private final String instructor;
-    private final int maxCapacity;
+    private String courseCode;
+    private String title;
+    private String instructor;
+    private int maxCapacity;
     private final List<Student> enrolledStudents;
 
     public Course(String courseCode, String title, String instructor, int maxCapacity) {
@@ -18,20 +18,37 @@ public class Course {
         this.enrolledStudents = new ArrayList<>();
     }
 
+
     public String getCourseCode() {
         return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getInstructor() {
         return instructor;
     }
 
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
     public int getMaxCapacity() {
         return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
     }
 
     public void addStudent(Student student) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class University {
-    private final String uniName;
+    private String uniName;
     private final List<Student> students;
     private final List<Course> courses;
 
@@ -12,6 +12,14 @@ public abstract class University {
         this.uniName = uniName;
         this.students = new ArrayList<>();
         this.courses = new ArrayList<>();
+    }
+
+    public String getName() {
+        return uniName;
+    }
+
+    public void setName(String name) {
+        this.uniName = name;
     }
 
     public List<Student> getStudents() {
