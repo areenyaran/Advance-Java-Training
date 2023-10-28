@@ -35,7 +35,6 @@ public class Manager implements iUser, iAdmin {
         return staff;
     }
 
-    // Implement the getter methods for the company.iUser interface
     @Override
     public int getId() {
         return id;

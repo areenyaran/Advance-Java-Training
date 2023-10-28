@@ -4,7 +4,7 @@ public class ManagerBudgetReport implements BudgetReportGenerator<Manager> {
     @Override
     public void generateBudgetReport(Manager admin) {
 
-        System.out.println("company.Manager Budget Report: \n" + admin.getInfo());
+        System.out.println("Manager Budget Report: \n" + admin.getInfo());
 
         BudgetCalculator calculator = new ManagerBudgetCalculator();
         double totalBudget = calculator.calculateBudget(admin);
