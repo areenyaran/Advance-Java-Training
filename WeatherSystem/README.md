@@ -4,6 +4,8 @@
 
 This is a Weather Monitoring program implemented in Java, utilizing the Observer and Decorator design patterns to allow users to customize their experience with real-time weather data.
 
+## [The class diagram ](https://drive.google.com/file/d/111_YvEE75Vdd9F6PoiSbyKAmxiOY0qEo/view?usp=sharing)https://drive.google.com/file/d/111_YvEE75Vdd9F6PoiSbyKAmxiOY0qEo/view?usp=sharing
+
 ## Classes and Methods
 
 ### 1. `Main`
