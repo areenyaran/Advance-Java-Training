@@ -1,3 +1,3 @@
 interface WeatherDataObserver {
-    void update(WeatherDataInfo data);
+    void update(WeatherData data);
 }

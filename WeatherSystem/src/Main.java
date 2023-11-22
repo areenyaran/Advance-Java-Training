@@ -23,15 +23,29 @@ public class Main {
         boolean includePrecipitation = scanner.nextLine().equalsIgnoreCase("y");
         scanner.close();
 
-        WeatherDataDecorator baseDecorator = useFahrenheit ? new TemperatureUnitsDecorator() : new WeatherDataDecorator(currentConditionsDisplay);
-        if (includeWindSpeed) {
-            baseDecorator = new WindSpeedDecorator(baseDecorator);
+        //BAD code, but its the only way i think of to handle all probabilities without duplicate registrations code.. while the WeatherDataDecorator is an abstract
+        if (useFahrenheit && includeWindSpeed && includePrecipitation) {
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new PrecipitationDecorator(new WindSpeedDecorator(currentConditionsDisplay))));
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new PrecipitationDecorator(new WindSpeedDecorator(statisticsDisplay))));
+        } else if (useFahrenheit && includeWindSpeed && !includePrecipitation) {
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new WindSpeedDecorator(currentConditionsDisplay)));
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new WindSpeedDecorator(statisticsDisplay)));
+        } else if (useFahrenheit && !includeWindSpeed && includePrecipitation) {
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new PrecipitationDecorator(currentConditionsDisplay)));
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(new PrecipitationDecorator(statisticsDisplay)));
+        } else if (useFahrenheit && !includeWindSpeed && !includePrecipitation) {
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(currentConditionsDisplay));
+            weatherDataSubject.registerDecorator(new TemperatureUnitsDecorator(statisticsDisplay));
+        } else if (!useFahrenheit && includeWindSpeed && includePrecipitation) {
+            weatherDataSubject.registerDecorator(new PrecipitationDecorator((new WindSpeedDecorator(currentConditionsDisplay))));
+            weatherDataSubject.registerDecorator(new PrecipitationDecorator((new WindSpeedDecorator(statisticsDisplay))));
+        } else if (!useFahrenheit && !includeWindSpeed && includePrecipitation) {
+            weatherDataSubject.registerDecorator(new PrecipitationDecorator(currentConditionsDisplay));
+            weatherDataSubject.registerDecorator(new PrecipitationDecorator(statisticsDisplay));
+        } else if (!useFahrenheit && includeWindSpeed && !includePrecipitation) {
+            weatherDataSubject.registerDecorator((new WindSpeedDecorator(currentConditionsDisplay)));
+            weatherDataSubject.registerDecorator((new WindSpeedDecorator(statisticsDisplay)));
         }
-        if (includePrecipitation) {
-            baseDecorator = new PrecipitationDecorator(baseDecorator);
-        }
-
-        weatherDataSubject.registerDecorator(baseDecorator);
 
         weatherDataSubject.setWeatherData(5, 55, 1008);
         System.out.println("----------------------------------------------------------------");
