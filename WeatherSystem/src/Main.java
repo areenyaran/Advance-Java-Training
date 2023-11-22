@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -22,28 +23,15 @@ public class Main {
         boolean includePrecipitation = scanner.nextLine().equalsIgnoreCase("y");
         scanner.close();
 
-        if (useFahrenheit && includeWindSpeed && includePrecipitation) {
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new PrecipitationDecorator(new WindSpeedDecorator(currentConditionsDisplay))));
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new PrecipitationDecorator(new WindSpeedDecorator(statisticsDisplay))));
-        } else if (useFahrenheit && includeWindSpeed && !includePrecipitation) {
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new WindSpeedDecorator(currentConditionsDisplay)));
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new WindSpeedDecorator(statisticsDisplay)));
-        } else if (useFahrenheit && !includeWindSpeed && includePrecipitation) {
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new PrecipitationDecorator(currentConditionsDisplay)));
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(new PrecipitationDecorator(statisticsDisplay)));
-        } else if (useFahrenheit && !includeWindSpeed && !includePrecipitation) {
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(currentConditionsDisplay));
-            weatherDataSubject.registerObserver(new TemperatureUnitsDecorator(statisticsDisplay));
-        } else if (!useFahrenheit && includeWindSpeed && includePrecipitation) {
-            weatherDataSubject.registerObserver(new PrecipitationDecorator((new WindSpeedDecorator(currentConditionsDisplay))));
-            weatherDataSubject.registerObserver(new PrecipitationDecorator((new WindSpeedDecorator(statisticsDisplay))));
-        } else if (!useFahrenheit && !includeWindSpeed && includePrecipitation) {
-            weatherDataSubject.registerObserver(new PrecipitationDecorator(currentConditionsDisplay));
-            weatherDataSubject.registerObserver(new PrecipitationDecorator(statisticsDisplay));
-        } else if (!useFahrenheit && includeWindSpeed && !includePrecipitation) {
-            weatherDataSubject.registerObserver((new WindSpeedDecorator(currentConditionsDisplay)));
-            weatherDataSubject.registerObserver((new WindSpeedDecorator(statisticsDisplay)));
+        WeatherDataDecorator baseDecorator = useFahrenheit ? new TemperatureUnitsDecorator() : new WeatherDataDecorator(currentConditionsDisplay);
+        if (includeWindSpeed) {
+            baseDecorator = new WindSpeedDecorator(baseDecorator);
         }
+        if (includePrecipitation) {
+            baseDecorator = new PrecipitationDecorator(baseDecorator);
+        }
+
+        weatherDataSubject.registerDecorator(baseDecorator);
 
         weatherDataSubject.setWeatherData(5, 55, 1008);
         System.out.println("----------------------------------------------------------------");

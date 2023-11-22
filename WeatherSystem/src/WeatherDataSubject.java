@@ -18,6 +18,10 @@ class WeatherDataSubject implements Observable {
         observers.remove(observer);
     }
 
+    public void registerDecorator(WeatherDataDecorator decorator) {
+        observers.add(decorator);
+    }
+
     public void notify(String message) {
         for (WeatherDataObserver observer : observers) {
             observer.update(weatherDataInfo);
